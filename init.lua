@@ -23,7 +23,7 @@
 ]]
 --
 
-print 'config sourced'
+-- print 'config sourced'
 
 -- Set <space> as the leader key
 -- See `:help mapleader`

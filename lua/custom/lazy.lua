@@ -1,4 +1,4 @@
-print 'THIS IS GETTING REQUIRED'
+-- print 'THIS IS GETTING REQUIRED'
 
 -- OPTIONAL BOOTSTAP ALTERNATIVE
 -- local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
