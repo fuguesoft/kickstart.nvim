@@ -45,6 +45,10 @@ require('lazy').setup {
     },
     -- import your plugins
     { import = 'custom.plugins' },
+
+    -- [[ Basic Autocommands ]]
+    --  See `:help lua-guide-autocommands`
+    { import = 'custom.autocommands' },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.

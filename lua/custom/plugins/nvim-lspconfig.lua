@@ -175,7 +175,6 @@ return {
       local servers = {
         clangd = {},
         -- gopls = {},
-        pyright = {},
         -- gdscript = {
         --         },
         -- gdshader_lsp = {},
@@ -203,6 +202,7 @@ return {
             },
           },
         },
+        pyright = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -221,9 +221,12 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'pylint',
         'black',
-        'pyright',
+        'debugpy',
+        'flake8',
+        'isort',
+        'mypy',
+        'pylint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
