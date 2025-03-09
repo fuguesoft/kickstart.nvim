@@ -44,7 +44,14 @@ require('lazy').setup {
       end,
     },
     -- import your plugins
-    { import = 'custom.plugins' },
+    -- { import = 'custom.plugins' },
+    { import = 'custom.plugins.color' },
+    -- { import = 'custom.plugins.fun' },
+    { import = 'custom.plugins.lsp' },
+    { import = 'custom.plugins.qol' },
+    { import = 'custom.plugins.productivity' },
+    -- { import = 'custom.plugins.window' },
+    { import = 'custom.plugins.writing' },
 
     -- [[ Basic Autocommands ]]
     --  See `:help lua-guide-autocommands`

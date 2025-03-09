@@ -8,9 +8,9 @@ return {
     require('lint').linters_by_ft = {
       python = {
         -- Uncomment whichever linters you prefer
-        -- 'flake8',
-        -- 'mypy',
-        -- 'pylint',
+        'flake8',
+        'mypy',
+        'pylint',
       },
     }
     vim.api.nvim_create_autocmd({ 'BufWritePost' }, {

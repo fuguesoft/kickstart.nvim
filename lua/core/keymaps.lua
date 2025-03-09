@@ -52,6 +52,8 @@ vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { desc = 'move line down' })
 vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { desc = 'move line up' })
 vim.keymap.set('v', '<A-j>', "<Esc>:m '>+1<CR>gv=gi", { desc = 'move line down' })
 vim.keymap.set('v', '<A-k>', "<Esc>:m '<-2<CR>gv=gv", { desc = 'move line up' })
+vim.keymap.set('n', '<A-j>', 'ddp', { desc = 'move line down' })
+vim.keymap.set('n', '<A-k>', 'ddkP', { desc = 'move line up' })
 
 -- Write a keymap to move lines in normal mode.
 -- vim.keymap.set('n', '<A-J>', "<Esc>:m '>+1<CR>gv=gi", { desc = 'move line down' })
