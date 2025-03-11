@@ -174,6 +174,15 @@ return {
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         clangd = {},
+        -- fish_lsp = {
+        --   cmd = { 'fish-lsp', 'start' },
+        --   cmd_env = { fish_lsp_show_client_popups = false },
+        --   filetypes = { 'fish' },
+        --   root_dir = function(fname)
+        --     return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+        --   end,
+        --   single_file_support = true,
+        -- },
         -- gopls = {},
         -- gdscript = {
         --         },
@@ -224,6 +233,7 @@ return {
         'black',
         'debugpy',
         'flake8',
+        'gdtoolkit',
         'isort',
         'mypy',
         'pylint',
