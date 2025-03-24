@@ -1,6 +1,7 @@
 return {
   -- https://github.com/mfussenegger/nvim-lint
   'mfussenegger/nvim-lint',
+  enabled = true,
   event = 'BufWritePost',
   config = function()
     -- Define a table of linters for each filetype (not extension).

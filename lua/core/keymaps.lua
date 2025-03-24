@@ -41,7 +41,7 @@ vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
 vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Exit insert mode' })
 vim.keymap.set('v', 'ii', '<Esc>', { desc = 'Exit visual mode' })
 
-vim.keymap.set('c', 'ii', '<esc>')
+vim.keymap.set('c', 'ii', '<Esc>', { desc = 'Exit command mode' })
 
 -- Terminal
 vim.keymap.set('n', '<space>tt', ':term<CR>')
@@ -96,5 +96,8 @@ vim.keymap.set('n', '<C-h>', '<C-w>H', { desc = 'Move focus to the left window' 
 vim.keymap.set('n', '<C-l>', '<C-w>L', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w>J', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w>K', { desc = 'Move focus to the upper window' })
+
+-- [[ CSV.VIM Overwrite ]]
+vim.g.csv_nomap_space = 1
 
 return {}

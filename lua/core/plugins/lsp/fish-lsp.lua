@@ -1,6 +1,7 @@
 return {
   {
     'ndonfris/fish-lsp',
+    enabled = true,
     -- opts = {
     --   cmd = { 'fish-lsp', 'start' },
     --   cmd_env = { fish_lsp_show_client_popups = false },

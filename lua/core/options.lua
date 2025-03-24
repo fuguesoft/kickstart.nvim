@@ -51,7 +51,7 @@ vim.opt.breakindent = true
 vim.opt.wrapmargin = 80
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.noexpandtab = true
+vim.expandtab = true
 vim.smarttab = true
 vim.opt.textwidth = 80
 vim.tabstop = 4
@@ -91,4 +91,6 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Allow letter increment with 'alpha' option
+vim.opt.nrformats = 'bin,hex,alpha'
 return {}

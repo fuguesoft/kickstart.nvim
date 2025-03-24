@@ -1,6 +1,7 @@
 return {
   -- https://github.com/psf/black
   'psf/black',
+  enabled = true,
   ft = 'python',
   config = function()
     -- Automatically format file buffer when saving
