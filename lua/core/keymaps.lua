@@ -5,6 +5,7 @@ vim.keymap.set('n', '<space><space>x', '<cmd>source %<CR>')
 vim.keymap.set('n', '<space>x', ':.lua<CR>')
 vim.keymap.set('v', '<space>x', ':lua<CR>')
 vim.keymap.set('n', '<space>p', ':.py<CR>')
+vim.keymap.set('v', '<space>p', ':py<CR>')
 
 -- Saving and Quitting
 vim.keymap.set('n', '<space>wq', ':wq<CR>')
@@ -44,7 +45,7 @@ vim.keymap.set('v', 'ii', '<Esc>', { desc = 'Exit visual mode' })
 vim.keymap.set('c', 'ii', '<Esc>', { desc = 'Exit command mode' })
 
 -- Terminal
-vim.keymap.set('n', '<space>tt', ':term<CR>')
+vim.keymap.set('n', '<space>tt', ':ToggleTerm<CR>')
 vim.keymap.set('t', 'ii', '<c-\\><c-n>')
 
 -- Line edit
@@ -52,8 +53,10 @@ vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { desc = 'move line down' })
 vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { desc = 'move line up' })
 vim.keymap.set('v', '<A-j>', "<Esc>:m '>+1<CR>gv=gi", { desc = 'move line down' })
 vim.keymap.set('v', '<A-k>', "<Esc>:m '<-2<CR>gv=gv", { desc = 'move line up' })
-vim.keymap.set('n', '<A-j>', 'ddp', { desc = 'move line down' })
-vim.keymap.set('n', '<A-k>', 'ddkP', { desc = 'move line up' })
+vim.keymap.set('n', '<A-j>', '<Esc>:m .+1<CR>==:echo("move line down")<CR>', { desc = 'move line down' })
+vim.keymap.set('n', '<A-k>', '<Esc>:m .-2<CR>==:echo("move line up")<CR>', { desc = 'move line up' })
+-- vim.keymap.set('n', '<A-j>', 'ddp', { desc = 'move line down' })
+-- vim.keymap.set('n', '<A-k>', 'ddkP', { desc = 'move line up' })
 
 -- Write a keymap to move lines in normal mode.
 -- vim.keymap.set('n', '<A-J>', "<Esc>:m '>+1<CR>gv=gi", { desc = 'move line down' })
@@ -98,6 +101,6 @@ vim.keymap.set('n', '<C-j>', '<C-w>J', { desc = 'Move focus to the lower window'
 vim.keymap.set('n', '<C-k>', '<C-w>K', { desc = 'Move focus to the upper window' })
 
 -- [[ CSV.VIM Overwrite ]]
-vim.g.csv_nomap_space = 1
+-- vim.g.csv_nomap_space = 1
 
 return {}

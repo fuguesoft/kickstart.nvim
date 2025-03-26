@@ -1,6 +1,6 @@
-vim.api.nvim_create_autocmd('FileType', {
+vim.api.nvim_create_autocmd('VimEnter', {
   group = vim.api.nvim_create_augroup('move_lines_normal', { clear = true }),
-  -- pattern = { 'lua', 'md' },
+  pattern = { '*' },
   callback = function()
     vim.schedule(function()
       -- print 'Ur Mum'
