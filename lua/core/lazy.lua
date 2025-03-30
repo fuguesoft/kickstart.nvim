@@ -48,6 +48,7 @@ require('lazy').setup {
     { import = 'core.plugins.color' },
     -- { import = 'core.plugins.fun' },
     { import = 'core.plugins.lsp' },
+    { import = 'core.plugins.markdown' },
     { import = 'core.plugins.qol' },
     { import = 'core.plugins.productivity' },
     { import = 'core.plugins.window' },

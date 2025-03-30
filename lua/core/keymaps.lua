@@ -1,11 +1,12 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+-- running code in browser
 vim.keymap.set('n', '<space><space>x', '<cmd>source %<CR>')
 vim.keymap.set('n', '<space>x', ':.lua<CR>')
 vim.keymap.set('v', '<space>x', ':lua<CR>')
-vim.keymap.set('n', '<space>p', ':.py<CR>')
-vim.keymap.set('v', '<space>p', ':py<CR>')
+vim.keymap.set('n', '<space>py', ':.py<CR>')
+vim.keymap.set('v', '<space>py', ':py<CR>')
 
 -- Saving and Quitting
 vim.keymap.set('n', '<space>wq', ':wq<CR>')
@@ -99,6 +100,17 @@ vim.keymap.set('n', '<C-h>', '<C-w>H', { desc = 'Move focus to the left window' 
 vim.keymap.set('n', '<C-l>', '<C-w>L', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w>J', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w>K', { desc = 'Move focus to the upper window' })
+
+--[[ Shating Files ]]
+-- Copy filepath to clipboard
+vim.keymap.set('n', '<leader>yf', ":let @+=expand('%')<CR>")
+vim.keymap.set('n', '<leader>yp', ":let @+=expand('%:p')<CR>")
+vim.keymap.set('n', '<leader>yd', ":let @+=expand('%:p:h')<CR>")
+
+-- Pastebins
+vim.keymap.set('n', '<leader>bp', ':!paste-pick -p %<CR>') -- paste.c-net.org
+vim.keymap.set('n', '<leader>bt', ':!paste-pick -t %<CR>') -- termbin.com
+vim.keymap.set('n', '<leader>bz', ':!paste-pick -z %<CR>') -- 0x0.st
 
 -- [[ CSV.VIM Overwrite ]]
 -- vim.g.csv_nomap_space = 1
