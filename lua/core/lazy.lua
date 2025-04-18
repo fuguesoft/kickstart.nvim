@@ -51,6 +51,7 @@ require('lazy').setup {
     { import = 'core.plugins.markdown' },
     { import = 'core.plugins.qol' },
     { import = 'core.plugins.productivity' },
+    { import = 'core.plugins.wiki' },
     { import = 'core.plugins.window' },
     { import = 'core.plugins.writing' },
 

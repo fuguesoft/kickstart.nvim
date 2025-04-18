@@ -213,11 +213,8 @@ return {
           },
         },
         pyright = {},
-
         yamlls = {
-          settings = {
-            yaml = { yamlVersion = 1.2 },
-          },
+          yamlVersion = 1.2,
         },
       }
 

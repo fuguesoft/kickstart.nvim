@@ -93,4 +93,6 @@ vim.opt.scrolloff = 10
 
 -- Allow letter increment with 'alpha' option
 vim.opt.nrformats = 'bin,hex,alpha'
+
+vim.opt.laststatus = 3
 return {}

@@ -107,10 +107,16 @@ vim.keymap.set('n', '<leader>yf', ":let @+=expand('%')<CR>")
 vim.keymap.set('n', '<leader>yp', ":let @+=expand('%:p')<CR>")
 vim.keymap.set('n', '<leader>yd', ":let @+=expand('%:p:h')<CR>")
 
--- Pastebins
+--[[ Pastebins ]]
+--
 vim.keymap.set('n', '<leader>bp', ':!paste-pick -p %<CR>') -- paste.c-net.org
 vim.keymap.set('n', '<leader>bt', ':!paste-pick -t %<CR>') -- termbin.com
 vim.keymap.set('n', '<leader>bz', ':!paste-pick -z %<CR>') -- 0x0.st
+
+--[[ Markdown Preview ]]
+--
+vim.keymap.set('n', '<leader>md', ':PeekOpen<CR>')
+-- vim.keymap.set('n', '<leader>md', ':PeekClose<CR>')
 
 -- [[ CSV.VIM Overwrite ]]
 -- vim.g.csv_nomap_space = 1
