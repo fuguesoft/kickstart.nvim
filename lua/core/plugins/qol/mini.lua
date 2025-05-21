@@ -13,9 +13,29 @@ return {
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-      -- - sd'   - [S]urround [D]elete [']quotes
+      -- - sd'   - [S]urround [D]elete [']quotesmini.surround
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+
+      local move = require 'mini.move'
+      move.setup {
+        mappings = {
+          -- Visual mode
+          left = '<A-h>',
+          down = '<A-j>',
+          up = '<A-k>',
+          right = '<A-l>',
+
+          -- Normal mode
+          line_left = '<A-h>',
+          line_down = '<A-j>',
+          line_up = '<A-k>',
+          line_right = '<A-l>',
+        },
+        options = {
+          reindent_linewise = true,
+        },
+      }
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
@@ -31,6 +51,9 @@ return {
       statusline.section_location = function()
         return '%2l:%-2v %P'
       end
+
+      -- Simple and easy tabline
+      -- require('mini.tabline').setup()
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim

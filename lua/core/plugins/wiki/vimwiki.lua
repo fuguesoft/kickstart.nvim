@@ -15,6 +15,7 @@ return {
           sh = 'sh',
         },
         ext = 'md',
+        links_space_char = '_',
       },
       {
         path = '~/Documentos/wiki/farm/',
@@ -28,6 +29,7 @@ return {
           sh = 'sh',
         },
         ext = 'md',
+        links_space_char = '_',
       },
       {
         path = '~/Documentos/wiki/r-ableton/',
@@ -41,12 +43,14 @@ return {
           sh = 'sh',
         },
         ext = 'md',
+        links_space_char = '_',
       },
     }
     vim.g.vimwiki_global_ext = 0
     -- vim.g.vimwiki_ext2syntax = {}
     vim.g.vimwiki_filetypes = { 'markdown' }
     -- vim.g.vimwiki_markdown_link_ext = 1
+    vim.g.vimwiki_auto_header = 1
     vim.g.vimwiki_listsyms = '.·oOX'
     keys = {
       vim.keymap.set('n', '<leader>wi', ':VimwikiIndex<CR>'),
@@ -56,10 +60,5 @@ return {
       vim.keymap.set('n', '<leader>wr', ':VimwikiRenameFile<CR>'),
       vim.keymap.set('n', '<CR>', ':VimwikiTabDropLink<CR>'),
     }
-
-    -- wiki_list = vim.g.wiki_list
-    -- wiki_list.wiki_main.path = '~/Documentos/wiki/main/'
-    -- wiki_list.syntax = 'markdown'
-    -- wiki_list.ext = { 'md', 'markdown' }
   end,
 }

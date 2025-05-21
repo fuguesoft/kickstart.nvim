@@ -22,6 +22,7 @@ return {
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'LukasPietzschmann/telescope-tabs' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -49,15 +50,42 @@ return {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
+        -- builtin = {
+        --   buffers = {
+        --     opts = {
+        --       sort_lastused = true,
+        --       sort_mru = true,
+        --     },
+        --   },
+        -- },
         defaults = {
           mappings = {
             i = {
               ['<c-enter>'] = 'to_fuzzy_refine',
               ['ii'] = { '<esc>', type = 'command' },
+              -- ['<CR>'] = function(bufnr)
+              --   require('telescope.actions.set').edit(bufnr, 'tab drop')
+              -- end,
+              ['<S-CR>'] = function(bufnr)
+                require('telescope.actions.set').edit(bufnr, 'tabedit')
+              end,
             },
             n = {
               ['ii'] = 'close',
+              -- ['<CR>'] = function(bufnr)
+              --   require('telescope.actions.set').edit(bufnr, 'drop')
+              -- end,
+              ['<S-CR>'] = function(bufnr)
+                require('telescope.actions.set').edit(bufnr, 'tabedit')
+              end,
             },
+          },
+          path_display = {
+            shorten = 1,
+          },
+          file_ignore_patterns = {
+            '^secret',
+            '^secret/',
           },
         },
         -- pickers = {}
@@ -66,21 +94,12 @@ return {
             require('telescope.themes').get_dropdown(),
           },
         },
-        -- fie_browser = {
-        --   mappings = {
-        --     i = {
-        --       ['ii'] = { '<esc>', type = 'command' },
-        --     },
-        --     n = {
-        --       ['ii'] = 'close',
-        --     },
-        --   },
-        -- },
       }
 
       -- Enabe Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'telescope-tabs')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -93,7 +112,9 @@ return {
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader><leader>', ':Telescope telescope-tabs list_tabs<CR>', { desc = '[ ] Find existing tabs' })
+      vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>sa', builtin.planets, { desc = 'Use the telescope...' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -116,7 +137,15 @@ return {
       -- Shortcut for searching your Neovim configuration files
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = '[S]earch [N]eovim files' })
+      end, { desc = '[S]earch [N]eovim Files' })
+
+      vim.keymap.set('n', '<leader>sc', function()
+        builtin.find_files { cwd = '/home/fugue/.config/' }
+      end, { desc = '[S]earch [C]onfig Files' })
+
+      vim.keymap.set('n', '<leader>sv', function()
+        builtin.find_files { cwd = '/home/fugue/Documentos/wiki/' }
+      end, { desc = '[S]earch [W]iki Files' })
     end,
   },
 

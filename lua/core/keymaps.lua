@@ -1,23 +1,59 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- running code in browser
-vim.keymap.set('n', '<space><space>x', '<cmd>source %<CR>')
-vim.keymap.set('n', '<space>x', ':.lua<CR>')
-vim.keymap.set('v', '<space>x', ':lua<CR>')
-vim.keymap.set('n', '<space>py', ':.py<CR>')
-vim.keymap.set('v', '<space>py', ':py<CR>')
+-- Running code in browser
+vim.keymap.set('n', '<leader><leader>x', '<cmd>source ~/.config/nvim/init.lua<CR>')
+vim.keymap.set('n', '<leader>nl', ':.lua<CR>')
+vim.keymap.set('v', '<leader>nl', ':lua<CR>')
+vim.keymap.set('n', '<leader>np', ':.py<CR>')
+vim.keymap.set('v', '<leader>np', ':py<CR>')
 
 -- Saving and Quitting
-vim.keymap.set('n', '<space>wq', ':wq<CR>')
-vim.keymap.set('n', '<space>qq', ':q!<CR>')
-vim.keymap.set('n', '<space>ww', ':w<CR>')
+vim.keymap.set('n', '<leader>wq', ':wq<CR>', { desc = '[W]rite and [Q]uit' })
+vim.keymap.set('n', '<leader>qq', ':q!<CR>', { desc = '[Q]uit without saving' })
+vim.keymap.set('n', '<leader>aa', ':qa!', { desc = '[Q]uit [A]ll without saving' })
+vim.keymap.set('n', '<leader>ww', ':w<CR>', { desc = '[W]rite' })
 
--- Tab Management
-vim.keymap.set('n', '<space>to', ':tabnew<CR>')
-vim.keymap.set('n', '<space>tx', ':tabclose<CR>')
-vim.keymap.set('n', '<space>tn', ':tabn<CR>')
-vim.keymap.set('n', '<space>tp', ':tabp<CR>')
+--[[ Window Managment ]]
+--
+--  See `:help wincmd` for a list of all window commands
+
+--  Focus windows
+--  Use ALT+<hjkl> to switch window focus
+vim.keymap.set('n', '<A-H>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<A-L>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<A-J>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<A-K>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Shift windows
+--  Use CTRL+<hjkl> to shift window position
+vim.keymap.set('n', '<C-h>', '<C-w>H', { desc = 'Move window left' })
+vim.keymap.set('n', '<C-l>', '<C-w>L', { desc = 'Move window right' })
+vim.keymap.set('n', '<C-j>', '<C-w>J', { desc = 'Move window down' })
+vim.keymap.set('n', '<C-k>', '<C-w>K', { desc = 'Move window up' })
+
+-- Resize windows
+--
+vim.keymap.set('n', '<A-w>', '<C-w>=', { desc = 'Windows Resize Equal' })
+vim.keymap.set('n', '<C-<>', '<C-w><', { desc = 'Window Rezize -1' })
+vim.keymap.set('n', '<C-S-<>', '<C-w>>', { desc = 'Window Rezize +1' })
+
+-- [[ Tab Management ]]
+--
+vim.keymap.set('n', '<leader>to', ':tabnew<CR>', { desc = '[T]ab [O]pen' })
+vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { desc = '[T]ab [C]lose' })
+vim.keymap.set('n', '<leader>tn', ':tabn<CR>', { desc = '[T]ab [N]ext' })
+vim.keymap.set('n', '<leader>tp', ':tabp<CR>', { desc = '[T]ab [P]revious' })
+vim.keymap.set('n', '<leader>v', ':vnew<CR>', { desc = '[V]ertical [S]plit' })
+
+vim.keymap.set('n', '<A-t>', ':tabnew<CR>', { desc = '[T]ab [O]pen' })
+vim.keymap.set('n', '<A-d>', ':tabclose<CR>', { desc = '[T]ab [C]lose' })
+vim.keymap.set('n', '<A-.>', ':tabn<CR>', { desc = '[T]ab [N]ext' })
+vim.keymap.set('n', '<A-,>', ':tabp<CR>', { desc = '[T]ab [P]revious' })
+
+-- [[ Buffer Management ]]
+--
+vim.keymap.set('n', '<leader>bc', ':bd!<CR>', { desc = '[B]uffer [C]lose' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -35,36 +71,38 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>:bd!<CR>', { desc = 'Exit terminal mode and close buffer' })
+-- vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>:bd!<CR>', { desc = 'Exit terminal mode and close buffer' })
 
 -- Exit insert mode
 vim.keymap.set('i', 'ii', '<Esc>', { desc = 'Exit insert mode' })
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
 vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Exit insert mode' })
+vim.keymap.set('i', '<A-Space>', '<Esc>', { desc = 'Exit visual mode' })
 vim.keymap.set('v', 'ii', '<Esc>', { desc = 'Exit visual mode' })
+vim.keymap.set('v', '<A-Space>', '<Esc>', { desc = 'Exit visual mode' })
 
-vim.keymap.set('c', 'ii', '<Esc>', { desc = 'Exit command mode' })
+vim.keymap.set('c', 'ii', '<Esc><Esc>', { desc = 'Exit command mode' })
+vim.keymap.set('c', '<A-Space>', '<Esc>', { desc = 'Exit command mode' })
 
 -- Terminal
-vim.keymap.set('n', '<space>tt', ':ToggleTerm<CR>')
+vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>')
 vim.keymap.set('t', 'ii', '<c-\\><c-n>')
 
 -- Line edit
 vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { desc = 'move line down' })
 vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { desc = 'move line up' })
-vim.keymap.set('v', '<A-j>', "<Esc>:m '>+1<CR>gv=gi", { desc = 'move line down' })
-vim.keymap.set('v', '<A-k>', "<Esc>:m '<-2<CR>gv=gv", { desc = 'move line up' })
-vim.keymap.set('n', '<A-j>', '<Esc>:m .+1<CR>==:echo("move line down")<CR>', { desc = 'move line down' })
-vim.keymap.set('n', '<A-k>', '<Esc>:m .-2<CR>==:echo("move line up")<CR>', { desc = 'move line up' })
+
+--[[ This will be handled by mini.move ]]
+--
+-- vim.keymap.set('v', '<A-j>', "<Esc>:m '>+1<CR>gv=gi", { desc = 'move line down' })
+-- vim.keymap.set('v', '<A-k>', "<Esc>:m '<-2<CR>gv=gv", { desc = 'move line up' })
+-- vim.keymap.set('n', '<A-j>', '<Esc>:m .+1<CR>==:echo("move line down")<CR>', { desc = 'move line down' })
+-- vim.keymap.set('n', '<A-k>', '<Esc>:m .-2<CR>==:echo("move line up")<CR>', { desc = 'move line up' })
 -- vim.keymap.set('n', '<A-j>', 'ddp', { desc = 'move line down' })
 -- vim.keymap.set('n', '<A-k>', 'ddkP', { desc = 'move line up' })
 
--- Write a keymap to move lines in normal mode.
--- vim.keymap.set('n', '<A-J>', "<Esc>:m '>+1<CR>gv=gi", { desc = 'move line down' })
--- vim.keymap.set('n', '<A-K>', "<Esc>:m '<-2<CR>gv=gv", { desc = 'move line up' })
-
 --[[ Disable Arrow Keys ]]
-
+--
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -83,41 +121,103 @@ vim.keymap.set('v', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('v', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('v', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
---[[ Window Managment ]]
+--[[ Sharing Files ]]
 --
---  See `:help wincmd` for a list of all window commands
-
---  Use ALT+<hjkl> to switch window focus
---  Focus windows
-vim.keymap.set('n', '<A-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<A-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<A-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<A-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
---  Use CTRL+<hjkl> to shift window position
--- Shift windows
-vim.keymap.set('n', '<C-h>', '<C-w>H', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w>L', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w>J', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w>K', { desc = 'Move focus to the upper window' })
-
---[[ Shating Files ]]
 -- Copy filepath to clipboard
-vim.keymap.set('n', '<leader>yf', ":let @+=expand('%')<CR>")
-vim.keymap.set('n', '<leader>yp', ":let @+=expand('%:p')<CR>")
-vim.keymap.set('n', '<leader>yd', ":let @+=expand('%:p:h')<CR>")
+vim.keymap.set('n', '<leader>yf', ":let @+=expand('%')<CR>", { desc = 'yank file name' }) -- yank file name
+vim.keymap.set('n', '<leader>yp', ":let @+=expand('%:p')<CR>", { desc = 'yank file path' }) -- yank file path
+vim.keymap.set('n', '<leader>yd', ":let @+=expand('%:p:h')<CR>", { desc = 'yank directory path' }) -- yank directory path
 
 --[[ Pastebins ]]
 --
-vim.keymap.set('n', '<leader>bp', ':!paste-pick -p %<CR>') -- paste.c-net.org
-vim.keymap.set('n', '<leader>bt', ':!paste-pick -t %<CR>') -- termbin.com
-vim.keymap.set('n', '<leader>bz', ':!paste-pick -z %<CR>') -- 0x0.st
+vim.keymap.set('n', '<leader>pp', ':!paste-pick -p %<CR>', { desc = 'paste file to paste.c-net.org' }) -- paste.c-net.org
+vim.keymap.set('n', '<leader>pt', ':!paste-pick -t %<CR>', { desc = 'paste file to termbin.com' }) -- termbin.com
+vim.keymap.set('n', '<leader>pn', ':!paste-pick -z %<CR>', { desc = 'paste file to 0x0.st' }) -- 0x0.st
+
+vim.keymap.set('v', '<leader>pp', ':w !paste-pick -p<CR>', { desc = 'paste lines to paste.c-net.org' }) -- paste.c-net.org
+vim.keymap.set('v', '<leader>pt', ':w !paste-pick -t<CR>', { desc = 'paste lines to termbin.com' }) -- termbin.com
+vim.keymap.set('v', '<leader>pn', ':w !paste-pick -z<CR>', { desc = 'paste lines to 0x0.st' }) -- 0x0.st
+
+--[[ File Browsing ]]
+--
+-- Oil Open in floating window w/ preview
+--  TODO:
+-- Find out what event Oil sends when closing without selecting a file
+-- Use that signal to restore the previous buffer before Oil was opened
+-- Possible candidates:
+-- oil.open()
+-- oil.select()
+-- oil.close()
+-- oil.get_cursor_entry()
+vim.keymap.set('n', '<leader>op', function()
+  local oil = require 'oil'
+  local util = require 'oil.util'
+  local file_name = vim.fn.bufname()
+  local nil_file = #file_name == 0 and file_name == ''
+  local before_open = function()
+    print ''
+  end
+
+  -- Set before_open based on buffer state
+  if nil_file then
+    before_open = function()
+      vim.cmd 'bd!'
+    end
+  else
+    before_open = function()
+      vim.cmd 'tabnew'
+    end
+  end
+
+  before_open()
+  oil.open_float()
+  util.run_after_load(0, function()
+    oil.open_preview()
+  end)
+end, { desc = 'Float Oil w/ preview' })
+
+-- Oil open and replace
+vim.keymap.set('n', '<leader>of', '<cmd>Oil<CR>', { desc = 'Open parent directory' })
+
+-- TODO:
+-- Get current buffer
+-- make vsplit max 30%
+-- push preview window to current buffer or new tab
+-- open selected file in currept buffer
+
+--[[ Vimwiki ]]
+--
+vim.keymap.set('n', '<leader>wi', ':VimwikiIndex<CR>', { desc = 'Open Vimwiki Index' })
+vim.keymap.set('n', '<leader>wt', ':VimwikiTabIndex<CR>', { desc = '[T]ab Open Vimwiki Index' })
+vim.keymap.set('n', '<leader>ws', ':VimwikiUISelect<CR>', { desc = '[S]elect Vimwiki Branch' })
+vim.keymap.set('n', '<leader>wx', ':VimwikiDeleteFile<CR>', { desc = 'Delete Vimwiki File' })
+vim.keymap.set('n', '<leader>wr', ':VimwikiRenameFile<CR>', { desc = 'Rename Vimwiki File' })
+vim.keymap.set('n', '<CR>', ':VimwikiTabDropLink<CR>', { desc = 'Create/Follow Link to Wiki Page' })
+vim.keymap.set('n', '<leader>w<leader>w', ':VimwikiMakeDiaryNote<CR>', { desc = 'Open Current Date Diary Entry' })
+
+-- Tasks
+-- To Do
+-- Append current date on open if current date not present
+--
+vim.keymap.set('n', '<leader>wn', ':v /home/fugue/Documentos/wiki/main/scratch.md', { desc = 'Open Global Task List' })
+
+--[[ Substitution ]]
+--
+vim.keymap.set('n', '<leader>rs', ':%s//g<left><left>', { desc = 'subsitute global' }) -- substitute
+vim.keymap.set('n', '<leader>rc', ':%s//gc<left><left><left>', { desc = 'subsitute global confirm' }) -- substitute w/ confirmation
 
 --[[ Markdown Preview ]]
 --
 vim.keymap.set('n', '<leader>md', ':PeekOpen<CR>')
+vim.keymap.set('n', '<leader>mx', ':PeekClose<CR>')
 -- vim.keymap.set('n', '<leader>md', ':PeekClose<CR>')
 
+--[[ Spell Check ]]
+--
+vim.keymap.set('n', '<leader>ce', ':setlocal spell! spelllang=en_US<CR>')
+vim.keymap.set('n', '<leader>cs', ':setlocal spelllang=es<CR>')
+
+--
 -- [[ CSV.VIM Overwrite ]]
 -- vim.g.csv_nomap_space = 1
 

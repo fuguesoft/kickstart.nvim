@@ -10,8 +10,8 @@
 --   end
 -- end ---@diagnostic disable-next-line: undefined-field
 -- vim.opt.rtp:prepend(lazypath)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
+-- vim.g.mapleader = ' '
+-- vim.g.maplocalleader = '\\'
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
