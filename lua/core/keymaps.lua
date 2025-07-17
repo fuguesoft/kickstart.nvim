@@ -51,6 +51,9 @@ vim.keymap.set('n', '<A-d>', ':tabclose<CR>', { desc = '[T]ab [C]lose' })
 vim.keymap.set('n', '<A-.>', ':tabn<CR>', { desc = '[T]ab [N]ext' })
 vim.keymap.set('n', '<A-,>', ':tabp<CR>', { desc = '[T]ab [P]revious' })
 
+vim.keymap.set('n', '<A-S-.>', ':tabm +1<CR>', { desc = 'Move Tab Right' })
+vim.keymap.set('n', '<A-S-,>', ':tabm -1<CR>', { desc = 'Move Tab Left' })
+
 -- [[ Buffer Management ]]
 --
 vim.keymap.set('n', '<leader>bc', ':bd!<CR>', { desc = '[B]uffer [C]lose' })
@@ -83,6 +86,10 @@ vim.keymap.set('v', '<A-Space>', '<Esc>', { desc = 'Exit visual mode' })
 
 vim.keymap.set('c', 'ii', '<Esc><Esc>', { desc = 'Exit command mode' })
 vim.keymap.set('c', '<A-Space>', '<Esc>', { desc = 'Exit command mode' })
+
+-- Git
+--
+vim.keymap.set('n', '<leader>g', ':Git<CR>')
 
 -- Terminal
 vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>')
@@ -124,7 +131,7 @@ vim.keymap.set('v', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 --[[ Sharing Files ]]
 --
 -- Copy filepath to clipboard
-vim.keymap.set('n', '<leader>yf', ":let @+=expand('%')<CR>", { desc = 'yank file name' }) -- yank file name
+vim.keymap.set('n', '<leader>yf', ":let @+=expand('%:t')<CR>", { desc = 'yank file name' }) -- yank file name
 vim.keymap.set('n', '<leader>yp', ":let @+=expand('%:p')<CR>", { desc = 'yank file path' }) -- yank file path
 vim.keymap.set('n', '<leader>yd', ":let @+=expand('%:p:h')<CR>", { desc = 'yank directory path' }) -- yank directory path
 
@@ -189,22 +196,25 @@ vim.keymap.set('n', '<leader>of', '<cmd>Oil<CR>', { desc = 'Open parent director
 --
 vim.keymap.set('n', '<leader>wi', ':VimwikiIndex<CR>', { desc = 'Open Vimwiki Index' })
 vim.keymap.set('n', '<leader>wt', ':VimwikiTabIndex<CR>', { desc = '[T]ab Open Vimwiki Index' })
-vim.keymap.set('n', '<leader>ws', ':VimwikiUISelect<CR>', { desc = '[S]elect Vimwiki Branch' })
-vim.keymap.set('n', '<leader>wx', ':VimwikiDeleteFile<CR>', { desc = 'Delete Vimwiki File' })
+vim.keymap.set('n', '<leader>ws', ':VimwikiUISelect<CR>', { desc = 'Vimwiki [S]elect Branch' })
+vim.keymap.set('n', '<leader>wd', ':VimwikiDeleteFile<CR>')
 vim.keymap.set('n', '<leader>wr', ':VimwikiRenameFile<CR>', { desc = 'Rename Vimwiki File' })
 vim.keymap.set('n', '<CR>', ':VimwikiTabDropLink<CR>', { desc = 'Create/Follow Link to Wiki Page' })
 vim.keymap.set('n', '<leader>w<leader>w', ':VimwikiMakeDiaryNote<CR>', { desc = 'Open Current Date Diary Entry' })
+vim.keymap.set('n', '<leader>w<leader>t', ':VimwikiTabMakeDiaryNote<CR>', { desc = 'Open Current Date Diary Entry' })
+vim.keymap.set('n', '<leader>wn', ':VimwikiGoto<CR>', { desc = '[N]ew [W]iki File' })
+vim.keymap.set('n', '<leader>w<leader>n', ':VimwikiTabIndex<CR> VimwikiGoto<CR>', { desc = '[N]ew [W]iki File' })
 
 -- Tasks
 -- To Do
 -- Append current date on open if current date not present
 --
-vim.keymap.set('n', '<leader>wn', ':v /home/fugue/Documentos/wiki/main/scratch.md', { desc = 'Open Global Task List' })
+vim.keymap.set('n', '<leader>wx', ':vs /home/fugue/Documentos/wiki/main/scratch.md<CR>', { desc = 'Open Global Task List' })
 
 --[[ Substitution ]]
 --
-vim.keymap.set('n', '<leader>rs', ':%s//g<left><left>', { desc = 'subsitute global' }) -- substitute
-vim.keymap.set('n', '<leader>rc', ':%s//gc<left><left><left>', { desc = 'subsitute global confirm' }) -- substitute w/ confirmation
+vim.keymap.set('n', '<leader>rs', ':%s///g<left><left><left>', { desc = '[R]eplace [G]lobal' }) -- substitute
+vim.keymap.set('n', '<leader>rc', ':%s///gc<left><left><left><left>', { desc = '[R]eplace Global [C]onfirm' }) -- substitute w/ confirmation
 
 --[[ Markdown Preview ]]
 --

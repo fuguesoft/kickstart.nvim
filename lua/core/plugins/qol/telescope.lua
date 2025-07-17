@@ -78,6 +78,7 @@ return {
               ['<S-CR>'] = function(bufnr)
                 require('telescope.actions.set').edit(bufnr, 'tabedit')
               end,
+              ['dd'] = require('telescope.actions').delete_buffer,
             },
           },
           path_display = {

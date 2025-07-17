@@ -59,6 +59,7 @@ return {
       vim.keymap.set('n', '<leader>wx', ':VimwikiDeleteFile<CR>'),
       vim.keymap.set('n', '<leader>wr', ':VimwikiRenameFile<CR>'),
       vim.keymap.set('n', '<CR>', ':VimwikiTabDropLink<CR>'),
+      vim.keymap.set('n', '<leader>wo', ':VimwikiGoTo<CR>', { desc = '[N]ew [W]iki File' }),
     }
   end,
 }
