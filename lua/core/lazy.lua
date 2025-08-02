@@ -36,13 +36,8 @@ vim.opt.runtimepath:prepend(lazypath)
 
 -- Setup lazy.nvim
 require('lazy').setup {
+
   spec = {
-    {
-      'rebelot/kanagawa.nvim',
-      config = function()
-        vim.cmd.colorscheme 'kanagawa'
-      end,
-    },
     -- import your plugins
     -- { import = 'core.plugins' },
     { import = 'core.plugins.color' },

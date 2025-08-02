@@ -52,6 +52,16 @@ return {
         return '%2l:%-2v %P'
       end
 
+      require('mini.hues').setup {
+        accent = 'high',
+        background = '#164d18',
+        foreground = '#164d18',
+        plugins = {
+          default = true,
+        },
+        saturation = 'medium',
+      }
+
       -- Simple and easy tabline
       -- require('mini.tabline').setup()
 

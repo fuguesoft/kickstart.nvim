@@ -48,13 +48,13 @@ end)
 vim.opt.breakindent = true
 
 -- Set wordwrap
-vim.opt.wrapmargin = 80
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
 vim.expandtab = true
 vim.smarttab = false
 vim.opt.textwidth = 80
-vim.tabstop = 4
+vim.opt.wrapmargin = 80
 
 -- Save undo history
 vim.opt.undofile = true
@@ -101,33 +101,24 @@ vim.opt.laststatus = 3
 vim.opt.modeline = true
 vim.opt.showtabline = 2
 
--- vim.opt.guitablabel=%t
+-- colorscheme
+vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = 'none' })
 
--- function MyTabLine()
---   s = ''
---   for i in range(tabpagenr('$'))
---     if i + 1 == tabpagenr()
---       s ..= '%#TabLineSel#'
---     else
---       s ..= '%#TabLine#'
---     end
---
---     " set the tab page number (for mouse clicks)
---     s ..= '%' .. (i + 1) .. 'T'
---
---     " the label is made by MyTabLabel()
---     s ..= ' %{MyTabLabel(' .. (i + 1) .. ')} '
---   end
---
---   " after the last tab fill with TabLineFill and reset tab page nr
---   s ..= '%#TabLineFill#%T'
---
---   " right-align the label to close the current tab page
---   if tabpagenr('$') > 1
---     s ..= '%=%#TabLine#%999Xclose'
---   end
---
---   return s
--- end
+-- visual
+vim.opt.showmatch = true
+vim.opt.matchtime = 2
+vim.opt.completeopt = 'menuone,noinsert,noselect'
+vim.opt.pumheight = 10
+vim.opt.pumblend = 10
+vim.opt.winblend = 0
+
+-- file
+vim.opt.autoread = true
+
+--behaviour
+vim.opt.autochdir = rue
+vim.opt.guicursor = 'a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
 
 return {}

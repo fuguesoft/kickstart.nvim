@@ -2,7 +2,7 @@
 --  See `:help vim.keymap.set()`
 
 -- Running code in browser
-vim.keymap.set('n', '<leader><leader>x', '<cmd>source ~/.config/nvim/init.lua<CR>')
+vim.keymap.set('n', '<leader><leader>x', ':source ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>nl', ':.lua<CR>')
 vim.keymap.set('v', '<leader>nl', ':lua<CR>')
 vim.keymap.set('n', '<leader>np', ':.py<CR>')
@@ -87,7 +87,7 @@ vim.keymap.set('v', '<A-Space>', '<Esc>', { desc = 'Exit visual mode' })
 vim.keymap.set('c', 'ii', '<Esc><Esc>', { desc = 'Exit command mode' })
 vim.keymap.set('c', '<A-Space>', '<Esc>', { desc = 'Exit command mode' })
 
--- Git
+-- [[ Git ]]
 --
 vim.keymap.set('n', '<leader>g', ':Git<CR>')
 
@@ -128,7 +128,7 @@ vim.keymap.set('v', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('v', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('v', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
---[[ Sharing Files ]]
+--[[ File Path ]]
 --
 -- Copy filepath to clipboard
 vim.keymap.set('n', '<leader>yf', ":let @+=expand('%:t')<CR>", { desc = 'yank file name' }) -- yank file name
@@ -220,7 +220,6 @@ vim.keymap.set('n', '<leader>rc', ':%s///gc<left><left><left><left>', { desc = '
 --
 vim.keymap.set('n', '<leader>md', ':PeekOpen<CR>')
 vim.keymap.set('n', '<leader>mx', ':PeekClose<CR>')
--- vim.keymap.set('n', '<leader>md', ':PeekClose<CR>')
 
 --[[ Spell Check ]]
 --
