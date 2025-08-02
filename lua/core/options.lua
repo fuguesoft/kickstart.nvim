@@ -102,6 +102,7 @@ vim.opt.modeline = true
 vim.opt.showtabline = 2
 
 -- colorscheme
+vim.cmd.colorscheme 'dogrun'
 vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = 'none' })
@@ -118,7 +119,7 @@ vim.opt.winblend = 0
 vim.opt.autoread = true
 
 --behaviour
-vim.opt.autochdir = rue
-vim.opt.guicursor = 'a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
+vim.opt.autochdir = false
+vim.opt.guicursor = 'i-ci-ve:ver25,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
 
 return {}

@@ -13,6 +13,7 @@ vim.keymap.set('n', '<leader>wq', ':wq<CR>', { desc = '[W]rite and [Q]uit' })
 vim.keymap.set('n', '<leader>qq', ':q!<CR>', { desc = '[Q]uit without saving' })
 vim.keymap.set('n', '<leader>aa', ':qa!', { desc = '[Q]uit [A]ll without saving' })
 vim.keymap.set('n', '<leader>ww', ':w<CR>', { desc = '[W]rite' })
+vim.keymap.set('n', '<leader>cc', ':bd!<CR>', { desc = '[C]lear Buffer' })
 
 --[[ Window Managment ]]
 --
@@ -58,6 +59,13 @@ vim.keymap.set('n', '<A-S-,>', ':tabm -1<CR>', { desc = 'Move Tab Left' })
 --
 vim.keymap.set('n', '<leader>bc', ':bd!<CR>', { desc = '[B]uffer [C]lose' })
 
+-- [[ Navigation ]]
+--
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next result (centered)' })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous result (centered)' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Half page down (centered)' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Half page up (centered)' })
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -91,9 +99,9 @@ vim.keymap.set('c', '<A-Space>', '<Esc>', { desc = 'Exit command mode' })
 --
 vim.keymap.set('n', '<leader>g', ':Git<CR>')
 
--- Terminal
-vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>')
-vim.keymap.set('t', 'ii', '<c-\\><c-n>')
+-- Terminal (Trying a new thing)
+-- vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>')
+-- vim.keymap.set('t', 'ii', '<c-\\><c-n>')
 
 -- Line edit
 vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { desc = 'move line down' })
@@ -184,7 +192,15 @@ vim.keymap.set('n', '<leader>op', function()
 end, { desc = 'Float Oil w/ preview' })
 
 -- Oil open and replace
-vim.keymap.set('n', '<leader>of', '<cmd>Oil<CR>', { desc = 'Open parent directory' })
+-- vi.keymap.set('n', '<leader>of', '<cmd>Oil<CR>', { desc = 'Open parent directory' })
+vim.keymap.set('n', '<leader>of', function()
+  local oil = require 'oil'
+  local util = require 'oil.util'
+  oil.open()
+  util.run_after_load(0, function()
+    oil.open_preview()
+  end)
+end, { desc = 'Open parent directory with preview' })
 
 -- TODO:
 -- Get current buffer
