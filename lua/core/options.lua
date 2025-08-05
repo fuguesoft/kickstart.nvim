@@ -74,7 +74,7 @@ vim.opt.timeoutlen = 350
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
--- vim.opt.splitbelow = true
+vim.opt.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
@@ -119,7 +119,7 @@ vim.opt.winblend = 0
 vim.opt.autoread = true
 
 --behaviour
-vim.opt.autochdir = false
+vim.opt.autochdir = off
 vim.opt.guicursor = 'i-ci-ve:ver25,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
 
 return {}

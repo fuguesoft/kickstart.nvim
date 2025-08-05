@@ -65,6 +65,8 @@ vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next result (centered)' })
 vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous result (centered)' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Half page down (centered)' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Half page up (centered)' })
+vim.keymap.set('n', '<C-f>', '<C-f>zz', { desc = 'Page down (centered)' })
+vim.keymap.set('n', '<C-b>', '<C-b>zz', { desc = 'Page up (centered)' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -189,10 +191,21 @@ vim.keymap.set('n', '<leader>op', function()
   util.run_after_load(0, function()
     oil.open_preview()
   end)
-end, { desc = 'Float Oil w/ preview' })
+end, { desc = 'Float Oil w/ [P]review' })
 
 -- Oil open and replace
 -- vi.keymap.set('n', '<leader>of', '<cmd>Oil<CR>', { desc = 'Open parent directory' })
+
+vim.keymap.set('n', '<leader>od', function()
+  local oil = require 'oil'
+  local util = require 'oil.util'
+  local actions = require 'oil.actions'
+  oil.open()
+  util.run_after_load(0, function()
+    actions.cd '%:h'
+  end)
+end, { desc = 'Open parent directory with preview' })
+
 vim.keymap.set('n', '<leader>of', function()
   local oil = require 'oil'
   local util = require 'oil.util'
@@ -201,6 +214,9 @@ vim.keymap.set('n', '<leader>of', function()
     oil.open_preview()
   end)
 end, { desc = 'Open parent directory with preview' })
+
+-- Open oil in split
+vim.keymap.set('n', '<leader>os', '<cmd>topleft 35 vs | Oil<cr>', { desc = 'Open oil in split' })
 
 -- TODO:
 -- Get current buffer
@@ -225,7 +241,7 @@ vim.keymap.set('n', '<leader>w<leader>n', ':VimwikiTabIndex<CR> VimwikiGoto<CR>'
 -- To Do
 -- Append current date on open if current date not present
 --
-vim.keymap.set('n', '<leader>wx', ':vs /home/fugue/Documentos/wiki/main/scratch.md<CR>', { desc = 'Open Global Task List' })
+vim.keymap.set('n', '<leader>wx', ':50 vs /home/fugue/Documentos/wiki/main/scratch.md<CR>', { desc = 'Open Global Task List' })
 
 --[[ Substitution ]]
 --
