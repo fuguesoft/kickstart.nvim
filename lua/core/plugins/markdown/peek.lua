@@ -5,6 +5,8 @@ return {
     build = 'deno task --quiet build:fast',
     config = function()
       require('peek').setup {
+        close_on_bdelete = true,
+        app = 'browser',
         filetype = {
           'markdown',
           'vimwiki',

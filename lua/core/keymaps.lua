@@ -1,9 +1,29 @@
+-- [[ Directories ]]
+-- user dirs
+
+function get_xdg_dir(dirname)
+  dirname = string.upper(dirname)
+  local handle = io.popen(string.format('xdg-user-dir %s', dirname))
+  local result = handle:read '*a'
+  handle:close()
+  return result:match '^%s*(.-)%s*$'
+end
+
+local desk = get_xdg_dir 'desktop'
+local music = get_xdg_dir 'music'
+local docs = get_xdg_dir 'documents'
+local download = get_xdg_dir 'download'
+local pics = get_xdg_dir 'pictures'
+local share = get_xdg_dir 'publicshare'
+local template = get_xdg_dir 'templates'
+local vids = get_xdg_dir 'videos'
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
 -- Running code in browser
 vim.keymap.set('n', '<leader><leader>x', ':source ~/.config/nvim/init.lua<CR>')
-vim.keymap.set('n', '<leader>nl', ':.lua<CR>')
+vim.keymap.set('n', '<leader>nl', ':%lua<CR>')
 vim.keymap.set('v', '<leader>nl', ':lua<CR>')
 vim.keymap.set('n', '<leader>np', ':.py<CR>')
 vim.keymap.set('v', '<leader>np', ':py<CR>')
@@ -18,6 +38,9 @@ vim.keymap.set('n', '<leader>cc', ':bd!<CR>', { desc = '[C]lear Buffer' })
 --[[ Window Managment ]]
 --
 --  See `:help wincmd` for a list of all window commands
+
+-- New window
+vim.keymap.set('n', '<leader>v', ':vnew<CR>', { desc = '[V]ertical [S]plit' })
 
 --  Focus windows
 --  Use ALT+<hjkl> to switch window focus
@@ -43,9 +66,9 @@ vim.keymap.set('n', '<C-S-<>', '<C-w>>', { desc = 'Window Rezize +1' })
 --
 vim.keymap.set('n', '<leader>to', ':tabnew<CR>', { desc = '[T]ab [O]pen' })
 vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { desc = '[T]ab [C]lose' })
+vim.keymap.set('n', '<leader>tx', ':tabonly<CR>', { desc = '[T]ab [X]only' })
 vim.keymap.set('n', '<leader>tn', ':tabn<CR>', { desc = '[T]ab [N]ext' })
 vim.keymap.set('n', '<leader>tp', ':tabp<CR>', { desc = '[T]ab [P]revious' })
-vim.keymap.set('n', '<leader>v', ':vnew<CR>', { desc = '[V]ertical [S]plit' })
 
 vim.keymap.set('n', '<A-t>', ':tabnew<CR>', { desc = '[T]ab [O]pen' })
 vim.keymap.set('n', '<A-d>', ':tabclose<CR>', { desc = '[T]ab [C]lose' })
@@ -151,9 +174,9 @@ vim.keymap.set('n', '<leader>pp', ':!paste-pick -p %<CR>', { desc = 'paste file 
 vim.keymap.set('n', '<leader>pt', ':!paste-pick -t %<CR>', { desc = 'paste file to termbin.com' }) -- termbin.com
 vim.keymap.set('n', '<leader>pn', ':!paste-pick -z %<CR>', { desc = 'paste file to 0x0.st' }) -- 0x0.st
 
-vim.keymap.set('v', '<leader>pp', ':w !paste-pick -p<CR>', { desc = 'paste lines to paste.c-net.org' }) -- paste.c-net.org
-vim.keymap.set('v', '<leader>pt', ':w !paste-pick -t<CR>', { desc = 'paste lines to termbin.com' }) -- termbin.com
-vim.keymap.set('v', '<leader>pn', ':w !paste-pick -z<CR>', { desc = 'paste lines to 0x0.st' }) -- 0x0.st
+vim.keymap.set('v', '<leader>pp', ":'<,'>w !paste-pick -p<CR>", { desc = 'paste lines to paste.c-net.org' }) -- paste.c-net.org
+vim.keymap.set('v', '<leader>pt', ":'<,'>w !paste-pick -t<CR>", { desc = 'paste lines to termbin.com' }) -- termbin.com
+vim.keymap.set('v', '<leader>pn', ":'<,'>w !paste-pick -z<CR>", { desc = 'paste lines to 0x0.st' }) -- 0x0.st
 
 --[[ File Browsing ]]
 --
@@ -241,7 +264,7 @@ vim.keymap.set('n', '<leader>w<leader>n', ':VimwikiTabIndex<CR> VimwikiGoto<CR>'
 -- To Do
 -- Append current date on open if current date not present
 --
-vim.keymap.set('n', '<leader>wx', ':50 vs /home/fugue/Documentos/wiki/main/scratch.md<CR>', { desc = 'Open Global Task List' })
+vim.keymap.set('n', '<leader>wx', string.format(':50 vs %s/wiki/main/global-task.md<CR>', docs), { desc = 'Open Global Task List' })
 
 --[[ Substitution ]]
 --
@@ -255,6 +278,13 @@ vim.keymap.set('n', '<leader>mx', ':PeekClose<CR>')
 
 --[[ Spell Check ]]
 --
+-- vim.keymap.set('n', '<leader>cd', ':tcd %:h<CR>')
+vim.keymap.set('n', '<leader>cd', function()
+  local directory = vim.fn['expand'] '%:h'
+  vim.cmd(string.format('tcd %s', directory))
+  print(string.format('working dir: %s', directory))
+  return {}
+end)
 vim.keymap.set('n', '<leader>ce', ':setlocal spell! spelllang=en_US<CR>')
 vim.keymap.set('n', '<leader>cs', ':setlocal spelllang=es<CR>')
 

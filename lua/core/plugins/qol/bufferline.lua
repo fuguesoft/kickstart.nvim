@@ -6,6 +6,11 @@ return {
     version = '*',
     dependencies = 'nvim-tree/nvim-web-devicons',
     opts = {
+      highlights = {
+        fill = {
+          bg = 'none',
+        },
+      },
       options = {
         mode = 'tabs',
         -- style_preset = bufferline.style_preset.minimal,

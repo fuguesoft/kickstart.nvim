@@ -1,10 +1,19 @@
+function get_xdg_dir(dirname)
+  dirname = string.upper(dirname)
+  local handle = io.popen(string.format('xdg-user-dir %s', dirname))
+  local result = handle:read '*a'
+  handle:close()
+  return result:match '^%s*(.-)%s*$'
+end
+
+local docs = get_xdg_dir 'documents'
 return {
   'vimwiki/vimwiki',
   enabled = true,
   init = function()
     vim.g.vimwiki_list = {
       {
-        path = '~/Documentos/wiki/main/',
+        path = string.format('%s/wiki/main/', docs),
         syntax = 'markdown',
         nested_syntaxes = {
           bash = 'bash',
@@ -13,12 +22,13 @@ return {
           lua = 'lua',
           python = 'python',
           sh = 'sh',
+          vifm = 'vimscript',
         },
         ext = 'md',
         links_space_char = '_',
       },
       {
-        path = '~/Documentos/wiki/farm/',
+        path = string.format('%s/wiki/farm/', docs),
         syntax = 'markdown',
         nested_syntaxes = {
           bash = 'bash',
@@ -27,12 +37,13 @@ return {
           lua = 'lua',
           python = 'python',
           sh = 'sh',
+          vifm = 'vimscript',
         },
         ext = 'md',
         links_space_char = '_',
       },
       {
-        path = '~/Documentos/wiki/r-ableton/',
+        path = string.format('%s/wiki/r-ableton/', docs),
         syntax = 'markdown',
         nested_syntaxes = {
           bash = 'bash',
@@ -41,6 +52,24 @@ return {
           lua = 'lua',
           python = 'python',
           sh = 'sh',
+          vifm = 'vimscript',
+        },
+        ext = 'md',
+        links_space_char = '_',
+      },
+      {
+        path = '/home/fugue/',
+        syntax = 'markdown',
+        nested_syntaxes = {
+          bash = 'bash',
+          cpp = 'cpp',
+          fish = 'fish',
+          lua = 'lua',
+          man = 'sh',
+          python = 'python',
+          sh = 'sh',
+          tin = 'tin',
+          vifm = 'vimscript',
         },
         ext = 'md',
         links_space_char = '_',

@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd('VimResized', {
         -- vimwiki.markdown file
         elseif buffer_filetype_string == 'vimwiki.markdown' then
           if vim.endswith(filename, '-task.md') then
-            vim.api.nvim_win_set_width(win, 40)
+            vim.api.nvim_win_set_width(win, 50)
           end
         -- oil buffer
         elseif buffer_filetype_string == 'oil' then

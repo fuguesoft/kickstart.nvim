@@ -1,3 +1,19 @@
+-- XDG_DESKTOP_DIR="$HOME/escritorio"
+-- XDG_DOWNLOAD_DIR="$HOME/Descargas"
+-- XDG_TEMPLATES_DIR="$HOME/plantillas"
+-- XDG_PUBLICSHARE_DIR="$HOME/público"
+-- XDG_DOCUMENTS_DIR="$HOME/documentos"
+-- XDG_MUSIC_DIR="$HOME/música"
+-- XDG_PICTURES_DIR="$HOME/imágenes"
+-- XDG_VIDEOS_DIR="$HOME/vídeos"
+function get_xdg_dir(dirname)
+  dirname = string.upper(dirname)
+  local handle = io.popen(string.format('xdg-user-dir %s', dirname))
+  local result = handle:read '*a'
+  handle:close()
+  return result:match '^%s*(.-)%s*$'
+end
+local docs = get_xdg_dir 'documents'
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
@@ -147,12 +163,17 @@ return {
       end, { desc = '[S]earch [N]eovim Files' })
 
       vim.keymap.set('n', '<leader>sc', function()
-        builtin.find_files { cwd = '/home/fugue/.config/' }
+        builtin.find_files { cwd = os.getenv 'XDG_CONFIG_HOME' }
+        -- builtin.find_files { cwd = '/home/fugue/.config/' }
       end, { desc = '[S]earch [C]onfig Files' })
 
       vim.keymap.set('n', '<leader>sv', function()
-        builtin.find_files { cwd = '/home/fugue/Documentos/wiki/' }
+        builtin.find_files { cwd = string.format('%s/wiki/main/', docs) }
       end, { desc = '[S]earch [W]iki Files' })
+
+      vim.keymap.set('n', '<leader>sl', function()
+        builtin.find_files { cwd = '~/.local/bin/' }
+      end, { desc = '[S]earch Path Fi[l]es' })
     end,
   },
 
