@@ -21,8 +21,10 @@ local vids = get_xdg_dir 'videos'
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Running code in browser
+-- Running code
 vim.keymap.set('n', '<leader><leader>x', ':source ~/.config/nvim/init.lua<CR>')
+
+-- determine fileype and run the file accordingly. One keymap for all the codes!
 vim.keymap.set('n', '<leader>nl', ':%lua<CR>')
 vim.keymap.set('v', '<leader>nl', ':lua<CR>')
 vim.keymap.set('n', '<leader>np', ':.py<CR>')
@@ -30,8 +32,11 @@ vim.keymap.set('v', '<leader>np', ':py<CR>')
 
 -- Saving and Quitting
 vim.keymap.set('n', '<leader>wq', ':wq<CR>', { desc = '[W]rite and [Q]uit' })
-vim.keymap.set('n', '<leader>qq', ':q!<CR>', { desc = '[Q]uit without saving' })
-vim.keymap.set('n', '<leader>aa', ':qa!', { desc = '[Q]uit [A]ll without saving' })
+vim.keymap.set('n', '<leader>qq', ':q!<CR>', { desc = 'Force [Q]uit Tab' })
+vim.keymap.set('n', '<leader>aa', ':qa!<CR>', { desc = '[Q]uit [A]ll without saving' })
+-- if last window, q! else tabclose!
+vim.keymap.set('n', '<leader><leader>q', ':q!<CR>', { desc = 'Force [Q]uit Window' })
+vim.keymap.set('n', '<leader><leader>a', ':qa!', { desc = '[Q]uit [A]ll without saving' })
 vim.keymap.set('n', '<leader>ww', ':w<CR>', { desc = '[W]rite' })
 vim.keymap.set('n', '<leader>cc', ':bd!<CR>', { desc = '[C]lear Buffer' })
 
@@ -101,14 +106,6 @@ vim.keymap.set('n', 'd]', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagn
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnotic [E]rror message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
--- vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>:bd!<CR>', { desc = 'Exit terminal mode and close buffer' })
-
 -- Exit insert mode
 vim.keymap.set('i', 'ii', '<Esc>', { desc = 'Exit insert mode' })
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
@@ -124,22 +121,9 @@ vim.keymap.set('c', '<A-Space>', '<Esc>', { desc = 'Exit command mode' })
 --
 vim.keymap.set('n', '<leader>g', ':Git<CR>')
 
--- Terminal (Trying a new thing)
--- vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>')
--- vim.keymap.set('t', 'ii', '<c-\\><c-n>')
-
 -- Line edit
 vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { desc = 'move line down' })
 vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { desc = 'move line up' })
-
---[[ This will be handled by mini.move ]]
---
--- vim.keymap.set('v', '<A-j>', "<Esc>:m '>+1<CR>gv=gi", { desc = 'move line down' })
--- vim.keymap.set('v', '<A-k>', "<Esc>:m '<-2<CR>gv=gv", { desc = 'move line up' })
--- vim.keymap.set('n', '<A-j>', '<Esc>:m .+1<CR>==:echo("move line down")<CR>', { desc = 'move line down' })
--- vim.keymap.set('n', '<A-k>', '<Esc>:m .-2<CR>==:echo("move line up")<CR>', { desc = 'move line up' })
--- vim.keymap.set('n', '<A-j>', 'ddp', { desc = 'move line down' })
--- vim.keymap.set('n', '<A-k>', 'ddkP', { desc = 'move line up' })
 
 --[[ Disable Arrow Keys ]]
 --
@@ -258,7 +242,18 @@ vim.keymap.set('n', '<CR>', ':VimwikiTabDropLink<CR>', { desc = 'Create/Follow L
 vim.keymap.set('n', '<leader>w<leader>w', ':VimwikiMakeDiaryNote<CR>', { desc = 'Open Current Date Diary Entry' })
 vim.keymap.set('n', '<leader>w<leader>t', ':VimwikiTabMakeDiaryNote<CR>', { desc = 'Open Current Date Diary Entry' })
 vim.keymap.set('n', '<leader>wn', ':VimwikiGoto<CR>', { desc = '[N]ew [W]iki File' })
-vim.keymap.set('n', '<leader>w<leader>n', ':VimwikiTabIndex<CR> VimwikiGoto<CR>', { desc = '[N]ew [W]iki File' })
+vim.keymap.set('n', '<leader>ni', function()
+  -- just gonna make a shell script and :VimwikiGoTo the created file
+  -- local target = io.read '*l'
+
+  vim.cmd 'VimwikiIndex'
+  vim.cmd.lcd(string.format('%s/wiki', docs))
+  -- vim.cmd(string.format('VimwikiGoto %s', target))
+  vim.cmd 'VimwikiGoto '
+end, { desc = '[N]ew [I]ssue' })
+vim.keymap.set('n', '<leader>w<leader>n', ':VimwikiTabIndex<CR> :VimwikiGoto<CR>', { desc = '[N]ew [W]iki File' })
+
+-- Template Files
 
 -- Tasks
 -- To Do
@@ -287,9 +282,5 @@ vim.keymap.set('n', '<leader>cd', function()
 end)
 vim.keymap.set('n', '<leader>ce', ':setlocal spell! spelllang=en_US<CR>')
 vim.keymap.set('n', '<leader>cs', ':setlocal spelllang=es<CR>')
-
---
--- [[ CSV.VIM Overwrite ]]
--- vim.g.csv_nomap_space = 1
 
 return {}
