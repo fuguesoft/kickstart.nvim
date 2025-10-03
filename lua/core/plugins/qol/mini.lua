@@ -15,6 +15,7 @@ return {
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
       -- - sd'   - [S]urround [D]elete [']quotesmini.surround
       -- - sr)'  - [S]urround [R]eplace [)] [']
+      require('mini.comment').setup {}
       require('mini.surround').setup()
 
       local move = require 'mini.move'

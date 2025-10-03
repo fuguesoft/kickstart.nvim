@@ -1,5 +1,5 @@
 -- XDG_DESKTOP_DIR="$HOME/escritorio"
--- XDG_DOWNLOAD_DIR="$HOME/Descargas"
+-- XDG_DOWNLOAD_DIR="$HOME/descargas"
 -- XDG_TEMPLATES_DIR="$HOME/plantillas"
 -- XDG_PUBLICSHARE_DIR="$HOME/público"
 -- XDG_DOCUMENTS_DIR="$HOME/documentos"
@@ -38,7 +38,13 @@ return {
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
-      { 'LukasPietzschmann/telescope-tabs' },
+      {
+        'LukasPietzschmann/telescope-tabs',
+        -- require('telescope-tabs').setup {
+        --   close_tab_shortcut_i = '<C-d>',
+        --   close_tab_shortcut_n = 'dd',
+        -- },
+      },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that

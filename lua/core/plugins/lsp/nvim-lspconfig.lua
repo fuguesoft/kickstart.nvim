@@ -91,7 +91,7 @@ return {
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map('gca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
+          map('gCa', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
@@ -105,7 +105,7 @@ return {
             if vim.fn.has 'nvim-0.11' == 1 then
               return client:supports_method(method, bufnr)
             else
-              return client.supports_method(method, {bufnr = bufnr })
+              return client.supports_method(method, { bufnr = bufnr })
             end
           end
 
@@ -160,14 +160,14 @@ return {
       })
       vim.diagnostic.config {
         severity_sort = true,
-        float = {border = 'rounded', source = 'if_many'},
-        underline = {severity = vim.diagnostic.severity.ERROR},
+        float = { border = 'rounded', source = 'if_many' },
+        underline = { severity = vim.diagnostic.severity.ERROR },
         signs = vim.g.have_nerd_font and {
           text = {
-            [vim.diagnostic.severity.ERROR] = '', 
-            [vim.diagnostic.severity.WARN] = '', 
-            [vim.diagnostic.severity.INFO] = '', 
-            [vim.diagnostic.severity.HINT] = '',
+            [vim.diagnostic.severity.ERROR] = '󰅚 ',
+            [vim.diagnostic.severity.WARN] = '󰀪 ',
+            [vim.diagnostic.severity.INFO] = '󰋽 ',
+            [vim.diagnostic.severity.HINT] = '󰌶 ',
           },
         } or {},
         virtual_text = {
@@ -175,10 +175,10 @@ return {
           spacing = 2,
           format = function(diagnostic)
             local diagnostic_message = {
-              [vim.diagnostic.severity.ERROR] = diagnositc.message, 
-              [vim.diagnostic.severity.WARN] = diagnositc.message, 
-              [vim.diagnostic.severity.INFO] = diagnositc.message, 
-              [vim.diagnostic.severity.HINT] = diagnositc.message,
+              [vim.diagnostic.severity.ERROR] = diagnostic.message,
+              [vim.diagnostic.severity.WARN] = diagnostic.message,
+              [vim.diagnostic.severity.INFO] = diagnostic.message,
+              [vim.diagnostic.severity.HINT] = diagnostic.message,
             }
             return diagnostic_message[diagnostic.severity]
           end,

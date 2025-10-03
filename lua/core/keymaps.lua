@@ -158,9 +158,9 @@ vim.keymap.set('n', '<leader>pp', ':!paste-pick -p %<CR>', { desc = 'paste file 
 vim.keymap.set('n', '<leader>pt', ':!paste-pick -t %<CR>', { desc = 'paste file to termbin.com' }) -- termbin.com
 vim.keymap.set('n', '<leader>pn', ':!paste-pick -z %<CR>', { desc = 'paste file to 0x0.st' }) -- 0x0.st
 
-vim.keymap.set('v', '<leader>pp', ":'<,'>w !paste-pick -p<CR>", { desc = 'paste lines to paste.c-net.org' }) -- paste.c-net.org
-vim.keymap.set('v', '<leader>pt', ":'<,'>w !paste-pick -t<CR>", { desc = 'paste lines to termbin.com' }) -- termbin.com
-vim.keymap.set('v', '<leader>pn', ":'<,'>w !paste-pick -z<CR>", { desc = 'paste lines to 0x0.st' }) -- 0x0.st
+vim.keymap.set('v', '<leader>pp', ':w !paste-pick -p<CR>', { desc = 'paste lines to paste.c-net.org' }) -- paste.c-net.org
+vim.keymap.set('v', '<leader>pt', ':w !paste-pick -t<CR>', { desc = 'paste lines to termbin.com' }) -- termbin.com
+vim.keymap.set('v', '<leader>pn', ':w !paste-pick -z<CR>', { desc = 'paste lines to 0x0.st' }) -- 0x0.st
 
 --[[ File Browsing ]]
 --

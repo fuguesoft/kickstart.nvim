@@ -49,57 +49,58 @@ vim.opt.breakindent = true
 
 -- Set wordwrap
 vim.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
 vim.expandtab = true
 vim.smarttab = false
 vim.opt.textwidth = 80
 vim.opt.wrapmargin = 80
 
 -- Save undo history
-vim.opt.undofile = true
+vim.o.undofile = true
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.o.signcolumn = 'yes'
 
 -- Decrease update time
-vim.opt.updatetime = 250
+vim.o.updatetime = 250
 
 -- Decrease mapped sequence wait time
-vim.opt.timeoutlen = 350
+vim.o.timeoutlen = 350
 
 -- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = true
+vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.o.inccommand = 'split'
+vim.o.winborder = 'rounded'
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.o.scrolloff = 10
 
 -- Allow letter increment with 'alpha' option
-vim.opt.nrformats = 'bin,hex,alpha'
+vim.o.nrformats = 'bin,hex,alpha'
 
 -- hide buffer when :x is used
-vim.opt.hidden = true
-vim.opt.bufhidden = 'unload'
-vim.opt.laststatus = 3
-vim.opt.modeline = true
-vim.opt.showtabline = 2
+vim.o.hidden = true
+vim.o.bufhidden = 'unload'
+vim.o.laststatus = 3
+vim.o.modeline = true
+vim.o.showtabline = 2
 
 -- colorscheme
 vim.cmd.colorscheme 'dogrun'
@@ -111,18 +112,18 @@ vim.api.nvim_set_hl(0, 'TabLine', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'TabLineSel', { bg = 'none' })
 
 -- visual
-vim.opt.showmatch = true
-vim.opt.matchtime = 2
-vim.opt.completeopt = 'menuone,noinsert,noselect'
-vim.opt.pumheight = 10
-vim.opt.pumblend = 10
-vim.opt.winblend = 0
+vim.o.showmatch = true
+vim.o.matchtime = 2
+vim.o.completeopt = 'menuone,noinsert,noselect'
+vim.o.pumheight = 10
+vim.o.pumblend = 10
+vim.o.winblend = 0
 
 -- file
-vim.opt.autoread = true
+vim.o.autoread = true
 
 --behaviour
-vim.opt.autochdir = off
-vim.opt.guicursor = 'i-ci-ve:ver25,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
+vim.o.autochdir = off
+vim.o.guicursor = 'i-ci-ve:ver25,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
 
 return {}
