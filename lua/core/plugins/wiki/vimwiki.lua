@@ -71,7 +71,7 @@ return {
           tin = 'tin',
           vifm = 'vimscript',
         },
-        auto_diary_index = 0,
+        diary_rel_path = '/home/fugue/documentos/wiki/main/diary/',
         ext = 'md',
         links_space_char = '_',
       },

@@ -31,14 +31,14 @@ vim.keymap.set('n', '<leader>np', ':.py<CR>')
 vim.keymap.set('v', '<leader>np', ':py<CR>')
 
 -- Saving and Quitting
-vim.keymap.set('n', '<leader>wq', ':wq<CR>', { desc = '[W]rite and [Q]uit' })
-vim.keymap.set('n', '<leader>qq', ':q!<CR>', { desc = 'Force [Q]uit Tab' })
-vim.keymap.set('n', '<leader>aa', ':qa!<CR>', { desc = '[Q]uit [A]ll without saving' })
--- if last window, q! else tabclose!
-vim.keymap.set('n', '<leader><leader>q', ':q!<CR>', { desc = 'Force [Q]uit Window' })
-vim.keymap.set('n', '<leader><leader>a', ':qa!', { desc = '[Q]uit [A]ll without saving' })
-vim.keymap.set('n', '<leader>ww', ':w<CR>', { desc = '[W]rite' })
+vim.keymap.set('n', '<leader>aa', ':qa!<CR>', { desc = 'Force [Q]uit [A]ll without saving' })
 vim.keymap.set('n', '<leader>cc', ':bd!<CR>', { desc = '[C]lear Buffer' })
+vim.keymap.set('n', '<leader>qq', ':q!<CR>', { desc = 'Force [Q]uit Window' })
+vim.keymap.set('n', '<leader>wq', ':wq<CR>', { desc = '[W]rite and [Q]uit' })
+vim.keymap.set('n', '<leader>ww', ':w<CR>', { desc = '[W]rite' })
+-- if last window, q! else tabclose!
+vim.keymap.set('n', '<leader><leader>q', ':q!', { desc = 'Force [Q]uit Window' })
+vim.keymap.set('n', '<leader><leader>a', ':qa!', { desc = 'Force [Q]uit [A]ll without saving' })
 
 --[[ Window Managment ]]
 --
@@ -48,18 +48,18 @@ vim.keymap.set('n', '<leader>cc', ':bd!<CR>', { desc = '[C]lear Buffer' })
 vim.keymap.set('n', '<leader>v', ':vnew<CR>', { desc = '[V]ertical [S]plit' })
 
 --  Focus windows
---  Use ALT+<hjkl> to switch window focus
-vim.keymap.set('n', '<A-H>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<A-L>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<A-J>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<A-K>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+--  Use CTRL+<hjkl> to switch window focus
+-- vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+-- vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+-- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+-- vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Shift windows
---  Use CTRL+<hjkl> to shift window position
-vim.keymap.set('n', '<C-h>', '<C-w>H', { desc = 'Move window left' })
-vim.keymap.set('n', '<C-l>', '<C-w>L', { desc = 'Move window right' })
-vim.keymap.set('n', '<C-j>', '<C-w>J', { desc = 'Move window down' })
-vim.keymap.set('n', '<C-k>', '<C-w>K', { desc = 'Move window up' })
+--  Use ALT+<hjkl> to shift window position
+vim.keymap.set('n', '<A-H>', '<C-w>H', { desc = 'Move window left' })
+vim.keymap.set('n', '<A-L>', '<C-w>L', { desc = 'Move window right' })
+vim.keymap.set('n', '<A-J>', '<C-w>J', { desc = 'Move window down' })
+vim.keymap.set('n', '<A-K>', '<C-w>K', { desc = 'Move window up' })
 
 -- Resize windows
 --
