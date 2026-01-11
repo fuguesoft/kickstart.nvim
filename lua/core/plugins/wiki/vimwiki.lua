@@ -10,6 +10,7 @@ local docs = get_xdg_dir 'documents'
 return {
   'vimwiki/vimwiki',
   enabled = true,
+  event = 'VimEnter',
   init = function()
     vim.g.vimwiki_list = {
       {
@@ -19,6 +20,7 @@ return {
           bash = 'bash',
           cpp = 'cpp',
           fish = 'fish',
+          ini = 'ini',
           lua = 'lua',
           python = 'python',
           sh = 'sh',
@@ -34,6 +36,7 @@ return {
           bash = 'bash',
           cpp = 'cpp',
           fish = 'fish',
+          ini = 'ini',
           lua = 'lua',
           python = 'python',
           sh = 'sh',
@@ -49,6 +52,7 @@ return {
           bash = 'bash',
           cpp = 'cpp',
           fish = 'fish',
+          ini = 'ini',
           lua = 'lua',
           python = 'python',
           sh = 'sh',
@@ -64,6 +68,7 @@ return {
           bash = 'bash',
           cpp = 'cpp',
           fish = 'fish',
+          ini = 'ini',
           lua = 'lua',
           man = 'sh',
           python = 'python',
@@ -71,12 +76,13 @@ return {
           tin = 'tin',
           vifm = 'vimscript',
         },
-        diary_rel_path = '/home/fugue/documentos/wiki/main/diary/',
+        diary_rel_path = '/documentos/wiki/main/diary/',
         ext = 'md',
         links_space_char = '_',
       },
     }
     -- vim.g.bullet_types = ['-', '→']
+    vim.g.list_margin = -1
     vim.g.diary_start_week_day = 'sunday'
     vim.g.auto_chdir = 1
     vim.g.cycle_bullets = 1

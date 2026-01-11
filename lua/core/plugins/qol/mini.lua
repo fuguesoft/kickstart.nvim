@@ -15,7 +15,9 @@ return {
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
       -- - sd'   - [S]urround [D]elete [']quotesmini.surround
       -- - sr)'  - [S]urround [R]eplace [)] [']
-      require('mini.comment').setup {}
+      require('mini.comment').setup {
+        lazy = false,
+      }
       require('mini.surround').setup()
 
       local move = require 'mini.move'
@@ -50,7 +52,7 @@ return {
       -- cursor location to LINE:COLUMN
       -- -@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
-        return '%2l:%-2v %P'
+        return '%2l:%-2v %{ObsessionStatus("$", "S")} %P'
       end
 
       -- require('mini.hues').setup {

@@ -64,8 +64,10 @@ vim.keymap.set('n', '<A-K>', '<C-w>K', { desc = 'Move window up' })
 -- Resize windows
 --
 vim.keymap.set('n', '<A-w>', '<C-w>=', { desc = 'Windows Resize Equal' })
-vim.keymap.set('n', '<C-<>', '<C-w><', { desc = 'Window Rezize -1' })
-vim.keymap.set('n', '<C-S-<>', '<C-w>>', { desc = 'Window Rezize +1' })
+vim.keymap.set('n', '<C-º>', '<C-W><', { desc = 'Window Width Resize -1' })
+vim.keymap.set('n', '<C-S-ª>', '<C-W>>', { desc = 'Window Width Resize +1' })
+vim.keymap.set('n', '<C-ñ>', '<C-W>-', { desc = 'Window Height Resize -1' })
+vim.keymap.set('n', '<C-S-Ñ>', '<C-W>+', { desc = 'Window Height Resize +1' })
 
 -- [[ Tab Management ]]
 --
@@ -82,6 +84,8 @@ vim.keymap.set('n', '<A-,>', ':tabp<CR>', { desc = '[T]ab [P]revious' })
 
 vim.keymap.set('n', '<A-S-.>', ':tabm +1<CR>', { desc = 'Move Tab Right' })
 vim.keymap.set('n', '<A-S-,>', ':tabm -1<CR>', { desc = 'Move Tab Left' })
+vim.keymap.set('n', '<A-C-.>', ':tabm +1<CR>', { desc = 'Move Tab Right' })
+vim.keymap.set('n', '<A-C-,>', ':tabm -1<CR>', { desc = 'Move Tab Left' })
 
 -- [[ Buffer Management ]]
 --
@@ -105,6 +109,7 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]
 vim.keymap.set('n', 'd]', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnotic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnotic [E]rror message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', 'gK', '<cmd>norm! K<CR>', { desc = 'Open code help' })
 
 -- Exit insert mode
 vim.keymap.set('i', 'ii', '<Esc>', { desc = 'Exit insert mode' })
@@ -121,7 +126,7 @@ vim.keymap.set('c', '<A-Space>', '<Esc>', { desc = 'Exit command mode' })
 --
 vim.keymap.set('n', '<leader>g', ':Git<CR>')
 
--- Line edit
+-- [[ Line edit ]]
 vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { desc = 'move line down' })
 vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { desc = 'move line up' })
 
@@ -153,14 +158,29 @@ vim.keymap.set('n', '<leader>yp', ":let @+=expand('%:p')<CR>", { desc = 'yank fi
 vim.keymap.set('n', '<leader>yd', ":let @+=expand('%:p:h')<CR>", { desc = 'yank directory path' }) -- yank directory path
 
 --[[ Pastebins ]]
---
+-- Fish
 vim.keymap.set('n', '<leader>pp', ':!paste-pick -p %<CR>', { desc = 'paste file to paste.c-net.org' }) -- paste.c-net.org
 vim.keymap.set('n', '<leader>pt', ':!paste-pick -t %<CR>', { desc = 'paste file to termbin.com' }) -- termbin.com
 vim.keymap.set('n', '<leader>pn', ':!paste-pick -z %<CR>', { desc = 'paste file to 0x0.st' }) -- 0x0.st
 
-vim.keymap.set('v', '<leader>pp', ':w !paste-pick -p<CR>', { desc = 'paste lines to paste.c-net.org' }) -- paste.c-net.org
-vim.keymap.set('v', '<leader>pt', ':w !paste-pick -t<CR>', { desc = 'paste lines to termbin.com' }) -- termbin.com
-vim.keymap.set('v', '<leader>pn', ':w !paste-pick -z<CR>', { desc = 'paste lines to 0x0.st' }) -- 0x0.st
+vim.keymap.set({ 'v', 'x' }, '<leader>pp', ':w !paste-pick -p<CR>', { desc = 'paste lines to paste.c-net.org' }) -- paste.c-net.org
+vim.keymap.set({ 'v', 'x' }, '<leader>pt', ':w !paste-pick -t<CR>', { desc = 'paste lines to termbin.com' }) -- termbin.com
+vim.keymap.set({ 'v', 'x' }, '<leader>pn', ':w !paste-pick -z<CR>', { desc = 'paste lines to 0x0.st' }) -- 0x0.st
+
+-- Bash
+
+vim.keymap.set('n', '<leader>pe', ':!paste-pick.sh -p %<CR>', { desc = 'paste file to paste.c-net.org' }) -- paste.c-net.org
+vim.keymap.set('n', '<leader>pr', ':!paste-pick.sh -t %<CR>', { desc = 'paste file to termbin.com' }) -- termbin.com
+vim.keymap.set('n', '<leader>pb', ':!paste-pick.sh -z %<CR>', { desc = 'paste file to 0x0.st' }) -- 0x0.st
+
+vim.keymap.set({ 'v', 'x' }, '<leader>pe', ':w !paste-pick.sh -p<CR>', { desc = 'paste lines to paste.c-net.org' }) -- paste.c-net.org
+vim.keymap.set({ 'v', 'x' }, '<leader>pr', ':w !paste-pick.sh -t<CR>', { desc = 'paste lines to termbin.com' }) -- termbin.com
+vim.keymap.set({ 'v', 'x' }, '<leader>pb', ':w !cat<CR>', { desc = 'paste lines to 0x0.st' }) -- 0x0.st
+
+--[[ Testing ]]
+--
+vim.keymap.set({ 'n' }, '<leader>pq', '<cmd>!echo "normal"<CR>', { desc = 'run normal command' })
+vim.keymap.set({ 'v', 'x' }, '<leader>pq', '<cmd>w !echo "visual"<CR>', { desc = 'run visual command' })
 
 --[[ File Browsing ]]
 --
@@ -241,16 +261,57 @@ vim.keymap.set('n', '<leader>wr', ':VimwikiRenameFile<CR>', { desc = 'Rename Vim
 vim.keymap.set('n', '<CR>', ':VimwikiTabDropLink<CR>', { desc = 'Create/Follow Link to Wiki Page' })
 vim.keymap.set('n', '<leader>w<leader>w', ':VimwikiMakeDiaryNote<CR>', { desc = 'Open Current Date Diary Entry' })
 vim.keymap.set('n', '<leader>w<leader>t', ':VimwikiTabMakeDiaryNote<CR>', { desc = 'Open Current Date Diary Entry' })
+vim.keymap.set('n', '<S-up>', ':VimwikiDiaryPrevDay<CR>', { desc = 'Open Previous Day Diary Entry' })
+vim.keymap.set('n', '<S-down>', ':VimwikiDiaryNextDay<CR>', { desc = 'Open Next Day Diary Entry' })
 vim.keymap.set('n', '<leader>wn', ':VimwikiGoto<CR>', { desc = '[N]ew [W]iki File' })
-vim.keymap.set('n', '<leader>ni', function()
-  -- just gonna make a shell script and :VimwikiGoTo the created file
-  -- local target = io.read '*l'
 
+-- New Issue
+vim.keymap.set('n', '<leader>ni', function()
+  -- Load Vimwiki (hack to register file)
   vim.cmd 'VimwikiIndex'
-  vim.cmd.lcd(string.format('%s/wiki', docs))
-  -- vim.cmd(string.format('VimwikiGoto %s', target))
-  vim.cmd 'VimwikiGoto '
+
+  -- Get file name from user
+  vim.ui.input({ prompt = 'New issue file name: issue-' }, function(input)
+    -- Create file
+    if input ~= nil then
+      -- Construct filepath
+      local issue_base_path = '/home/fugue/documentos/wiki/main/issue-'
+      local new_issue_filename = input
+      local new_issue_full_path = string.format('%s%s.md', issue_base_path, new_issue_filename)
+
+      vim.cmd.write { new_issue_full_path }
+
+      -- read base template file contents into string
+      local issue_template = io.open('/home/fugue/documentos/wiki/main/issue-template.md', 'r')
+      if issue_template ~= nil then
+        local issue_text = issue_template:read '*a'
+        issue_text = string.format('# %s\n\n%s', new_issue_filename, issue_text)
+        issue_template:close()
+
+        -- dump read contents to new issue file
+        local outfile = io.open(new_issue_full_path, 'w')
+        if outfile ~= nil then
+          outfile:write(issue_text)
+          outfile:close()
+        end
+      end
+
+      -- open file
+      vim.cmd.edit { new_issue_full_path }
+    else
+      print 'No filename input'
+    end
+  end)
 end, { desc = '[N]ew [I]ssue' })
+
+-- New Note (WIP)
+vim.keymap.set('n', '<leader>no', function(title)
+  if title == '' or title == nil then
+    vim.notify 'Provide a title for the note'
+    return
+  end
+end, { desc = '[N][o]tify - Test Script' })
+
 vim.keymap.set('n', '<leader>w<leader>n', ':VimwikiTabIndex<CR> :VimwikiGoto<CR>', { desc = '[N]ew [W]iki File' })
 
 -- Template Files
@@ -266,21 +327,22 @@ vim.keymap.set('n', '<leader>wx', string.format(':50 vs %s/wiki/main/global-task
 vim.keymap.set('n', '<leader>rs', ':%s///g<left><left><left>', { desc = '[R]eplace [G]lobal' }) -- substitute
 vim.keymap.set('n', '<leader>rc', ':%s///gc<left><left><left><left>', { desc = '[R]eplace Global [C]onfirm' }) -- substitute w/ confirmation
 
+--[[ Spell Check ]]
+--
+vim.keymap.set('n', '<leader>ce', ':setlocal spell! spelllang=en_US<CR>')
+vim.keymap.set('n', '<leader>cs', ':setlocal spelllang=es<CR>')
+
 --[[ Markdown Preview ]]
 --
 vim.keymap.set('n', '<leader>md', ':PeekOpen<CR>')
 vim.keymap.set('n', '<leader>mx', ':PeekClose<CR>')
 
---[[ Spell Check ]]
---
--- vim.keymap.set('n', '<leader>cd', ':tcd %:h<CR>')
+-- Change directory
 vim.keymap.set('n', '<leader>cd', function()
   local directory = vim.fn['expand'] '%:h'
   vim.cmd(string.format('tcd %s', directory))
   print(string.format('working dir: %s', directory))
   return {}
 end)
-vim.keymap.set('n', '<leader>ce', ':setlocal spell! spelllang=en_US<CR>')
-vim.keymap.set('n', '<leader>cs', ':setlocal spelllang=es<CR>')
 
 return {}

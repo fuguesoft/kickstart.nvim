@@ -13,6 +13,8 @@ return {
           'css',
           'fish',
           'gdscript',
+          'godot_resource',
+          'gdshader',
           'html',
           'javascript',
           'lua',
@@ -29,6 +31,7 @@ return {
         -- Automatically install missing parsers when entering buffer
         -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
         auto_install = false,
+        vim.treesitter.language.register('markdown', 'vimwiki'),
 
         highlight = {
           enable = true,

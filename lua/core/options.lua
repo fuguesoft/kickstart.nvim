@@ -47,14 +47,15 @@ end)
 -- Enable break indent
 vim.opt.breakindent = true
 
--- Set wordwrap
-vim.tabstop = 2
+-- Set wordwrap/tabs
+vim.expandtab = true
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
-vim.expandtab = true
+vim.tabstop = 2
+vim.o.smartindent = true
 vim.smarttab = false
-vim.opt.textwidth = 80
-vim.opt.wrapmargin = 80
+vim.o.textwidth = 80
+vim.o.wrapmargin = 80
 
 -- Save undo history
 vim.o.undofile = true
