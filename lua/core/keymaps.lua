@@ -150,12 +150,13 @@ vim.keymap.set('v', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('v', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('v', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
---[[ File Path ]]
+--[[ Yanking ]]
 --
--- Copy filepath to clipboard
+-- Copy to clipboard
 vim.keymap.set('n', '<leader>yf', ":let @+=expand('%:t')<CR>", { desc = 'yank file name' }) -- yank file name
 vim.keymap.set('n', '<leader>yp', ":let @+=expand('%:p')<CR>", { desc = 'yank file path' }) -- yank file path
 vim.keymap.set('n', '<leader>yd', ":let @+=expand('%:p:h')<CR>", { desc = 'yank directory path' }) -- yank directory path
+vim.keymap.set('n', '<leader>yg', ":!cat '%:p' | wl-copy<CR>", { desc = 'yank file contents' })
 
 --[[ Pastebins ]]
 -- Fish
@@ -331,6 +332,18 @@ vim.keymap.set('n', '<leader>rc', ':%s///gc<left><left><left><left>', { desc = '
 --
 vim.keymap.set('n', '<leader>ce', ':setlocal spell! spelllang=en_US<CR>')
 vim.keymap.set('n', '<leader>cs', ':setlocal spelllang=es<CR>')
+
+-- Titlecase (WIP)
+--
+
+-- vim.keymap.set('n', 'gz', function()
+--   vim.cmd [[s#\v(\w)(\S*)#\u\1\L\2#g]]
+--   vim.cmd.nohls()
+-- end, { desc = 'Title Case' })
+
+vim.keymap.set('n', 'ga', [[<Cmd>s#\v(\w)(\S*)#\u\1\L\2#ge|nohls<CR><$>]], { desc = 'Title Case' })
+
+-- vim.keymap.set('n', '<leader>gz', ":s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g<CR>", { desc = 'Title Case' })
 
 --[[ Markdown Preview ]]
 --
